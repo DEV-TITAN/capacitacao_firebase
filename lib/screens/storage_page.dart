@@ -9,9 +9,13 @@ class StoragePage extends StatefulWidget {
 
 class _StoragePageState extends State<StoragePage> {
   File _image;
+  ImagePicker imgPicker = ImagePicker();
 
   Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image;
+    await imgPicker.getImage(source: ImageSource.gallery).then((value) {
+      image = value;
+    });
 
     setState(() {
       _image = image;
