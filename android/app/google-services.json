@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "220972708369",
+    "project_id": "capacitacao-titan-firebase",
+    "storage_bucket": "capacitacao-titan-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220972708369:android:8d0c786d7a1b15b926f7b0",
+        "android_client_info": {
+          "package_name": "com.example.firebase_capac_titan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220972708369-32te20ue15dditlnvnvl3palcof2ja60.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebase_capac_titan",
+            "certificate_hash": "01ae79dc0f4d7f41a2c2483b5100d3dd4831b056"
+          }
+        },
+        {
+          "client_id": "220972708369-pql40j8nh3fsfnru37u50oemh7p31ha7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSDwrgLiGJ3zyuurJRtXAxO7YsC-CDFEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220972708369-pql40j8nh3fsfnru37u50oemh7p31ha7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
