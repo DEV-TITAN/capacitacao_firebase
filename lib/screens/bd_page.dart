@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_capac/firestoreService.dart';
 import 'package:flutter/material.dart';
 
 class BdPage extends StatefulWidget {
@@ -6,6 +8,26 @@ class BdPage extends StatefulWidget {
 }
 
 class _BdPageState extends State<BdPage> {
+  FirestoreService firestore = FirestoreService.getInstance();
+
+  Widget buildList(BuildContext context, List<DocumentSnapshot> snapshots) {
+    print("Carregando registros...");
+    return ListView(
+      children: snapshots.map((data) => buildListItem(context,data)).toList(),
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+    );
+  }
+
+  Widget buildListItem(BuildContext context, DocumentSnapshot doc){
+    return Card(
+      child: ListTile(
+        title: Text(doc["name"]),
+        subtitle: Text(doc["email"]),
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,10 +61,17 @@ class _BdPageState extends State<BdPage> {
       body: Container(
         child: Column(
           children: [
-            Card(
-              child: ListTile(
-                title: Text("Nome"),
-                subtitle: Text("E-mail"),
+            Container(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: firestore.db.collection("users")
+                .orderBy("age",descending: true)
+                .snapshots(),
+                builder: (BuildContext context, snapshots) {
+                  if (!snapshots.hasData) {
+                    return Text("Aguarde...");
+                  }
+                  return buildList(context,snapshots.data.docs);
+                },
               ),
             ),
           ],
@@ -50,7 +79,12 @@ class _BdPageState extends State<BdPage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Color(0xFFF2A900),
-        onPressed: null,
+        onPressed: () async {
+          //await firestore.criarRegistro();
+          await firestore.criarRegistroNumerico();
+          //await firestore.atualizarRegistro("zJhxJmY3DJKbBCok7Mlt");
+          //await firestore.deletarRegistro("1");
+        },
         label: Text(
           "Gerar",
           style: TextStyle(color: Colors.black),
